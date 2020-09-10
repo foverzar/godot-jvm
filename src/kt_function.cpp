@@ -41,7 +41,7 @@ Variant KtFunction::invoke(jni::JObject instance, const Variant** p_args) {
     TransferContext::SharedBuffer buffer = transferContext->get_buffer(env);
     Vector<KtVariant> args;
     for (int i = 0; i < methodInfo->arguments.size(); i++) {
-        args.push_back(KtVariant(p_args[i]));
+        args.push_back(KtVariant(*p_args[i]));
     }
     transferContext->write_args(env, buffer, args);
     if (wrapped.call_boolean_method(env, methodId, {instance})) {
